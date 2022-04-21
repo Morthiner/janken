@@ -1,42 +1,97 @@
-# 3 modalidades escolhidas no inicio P x P, P x C, C x C
-# Cada partida coleta a opçao escohida pelo jogador, no caso de jogada do computador a opção é escolhida aleatoriamente
-# O jogo tem inumeras partidas e no final de cada partida o jogador tem a opçao de CONTINUAR ou SAIR
-# Caso o jogador saia o programa deve exibir um placar e uma mensagem de agradecimento com uma mensagem de 
-    # agradecimento com os nomes dos estudantes
-
-
 import random
 opcoes = ["pedra", "papel", "tesoura"]
+modo1 = False
+modo2 = False
+modo3 = False
 
-# Função jogada do computador => computador()
-def computador():
-    x = random.randint(0,2) 
-    return opcoes[x]
-
-# Função jogada do jogador => jogador()
-def jogador():
-    opcaoJogador = input("Escolha pedra, papel ou tesoura: ")
-    return opcaoJogador
-    #y = random.randint(0,2)
-    #return opcaoJogador
-
-temp = True
-
-while(temp):
-    if jogador() == "pedra":
-        print("Jogador escolheu {}".format(jogador()))
-        if computador() == "papel":
-            print("Computador escolheu {}".format(computador()))
-            print("Papel bate pedra, Jogador perdeu!")
-        elif computador() == "tesoura":
-            print("Computador escolheu {}".format(computador()))
-            print("Pedra bate tesoura, Jogador ganhou!")
-        else:
-            print("Computador escolheu {}".format(computador()))
-            print("Empate!")
-    #print("Jogador escolheu {}".format(jogador()))
-    continuar = int(input("Para CONTINUAR digite 1 e para SAIR digite 2: "))
+def continuar():
+    continuar = int(input("1 para continuar 2 para parar: "))
     if continuar == 2:
-        temp = False 
+        modo3 = False
+        opcaoJogo = int(input(
+            "Escolha uma modalidade: 1 para Jogador x Jogador, 2 para Jogador x Computador ou 3 para Computador x Computador: "))
 
+opcaoJogo = int(input("Escolha uma modalidade: 1 para Jogador x Jogador, 2 para Jogador x Computador ou 3 para Computador x Computador: "))
+if opcaoJogo == 1:
+    modo1 = True
+elif opcaoJogo == 2:
+    modo2 = True
+elif opcaoJogo == 3:
+    modo3 = True
+else:
+    print("Opção Inválida")
 
+while(modo1):
+    x = random.randint(0, 2)
+    y = random.randint(0, 2)
+    comp1 = opcoes[x]
+    comp2 = opcoes[y]
+    print("O jogador escolheu {}".format(comp1))
+    print("O computador escolheu {}".format(comp2))
+    if comp1 == "pedra":
+        if comp2 == "papel":
+            print("Voce perdeu! papel bate pedra")
+        elif comp2 == "tesoura":
+            print("Voce ganhou! pedra bate tesoura")
+        else:
+            print("Empate!")
+    continuar()
+
+while(modo2):
+    x = random.randint(0, 2)
+    jogador = input("Escolha pedra, papel ou tesoura: ")
+    comp = opcoes[x]
+    print("O jogador escolheu {}".format(jogador))
+    print("O computador escolheu {}".format(comp))
+    if jogador == "pedra":
+        if comp == "papel":
+            print("Voce perdeu! papel bate pedra")
+        elif comp == "tesoura":
+            print("Voce ganhou! pedra bate tesoura")
+        else:
+            print("Empate!")
+    if jogador == "papel":
+        if comp == "tesoura":
+            print("Voce perdeu! tesoura bate papel")
+        elif comp == "pedra":
+            print("Voce ganhou! papel bate pedra")
+        else:
+            print("Empate!")
+    if jogador == "tesoura":
+        if comp == "pedra":
+            print("Computador 2 ganhou! pedra bate tesoura")
+        elif comp == "papel":
+            print("Computador 1 ganhou! tesoura bate papel")
+        else:
+            print("Empate!")
+    continuar()
+
+while(modo3):
+    x = random.randint(0, 2)
+    y = random.randint(0, 2)
+    comp1 = opcoes[x]
+    comp2 = opcoes[y]
+    print("O Computador 1 escolheu {}".format(comp1))
+    print("O Computador 2 escolheu {}".format(comp2))
+    if comp1 == "pedra":
+        if comp2 == "papel":
+            print("Computador 2 ganhou! papel bate pedra")
+        elif comp2 == "tesoura":
+            print("Computador 1 ganhou! pedra bate tesoura")
+        else:
+            print("Empate!")
+    if comp1 == "papel":
+        if comp2 == "tesoura":
+            print("Computador 2 ganhou! tesoura bate papel")
+        elif comp2 == "pedra":
+            print("Computador 1 ganhou! papel bate pedra")
+        else:
+            print("Empate!")
+    if comp1 == "tesoura":
+        if comp2 == "pedra":
+            print("Computador 2 ganhou! pedra bate tesoura")
+        elif comp2 == "papel":
+            print("Computador 1 ganhou! tesoura bate papel")
+        else:
+            print("Empate!")
+    continuar()
